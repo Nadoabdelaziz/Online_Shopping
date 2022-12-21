@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mobile_navigation" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+                <TextView
+                    android:id="@+id/textGrid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:text="Choose Category"
+                    android:textColor="#0625B8"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+            <GridLayout
+                android:id="@+id/mainGrid"
+                android:layout_width="346dp"
+                android:layout_height="476dp"
+                android:layout_marginTop="100dp"
+                android:layout_weight="30"
+                android:alignmentMode="alignMargins"
+                android:columnCount="1"
+                android:columnOrderPreserved="false"
+                android:padding="14dp"
+                android:rowCount="2">
+
+                <!-- Row 1 -->
+
+                <!-- Column 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="281dp"
+                    android:layout_height="171dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <ImageButton
+                        android:id="@+id/MenBtn"
+                        android:layout_width="275dp"
+                        android:layout_height="165dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/side_nav_bar" />
+
+                        <TextView
+                            android:layout_width="128dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="170dp"
+                            android:text="Men"
+                            android:textColor="#0625B8"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="281dp"
+                    android:layout_height="171dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="2"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+
+
+                        <ImageButton
+                            android:layout_width="275dp"
+                            android:layout_height="165dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/download" />
+
+                    <TextView
+                        android:layout_width="128dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="170dp"
+                        android:text="Women"
+                        android:textColor="#0625B8"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
