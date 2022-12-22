@@ -196,15 +196,23 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
 
     // new Get Cart
-    public Cursor getCart(){
+    public Cursor getCart(String name){
+//        database=getReadableDatabase();
+//        String[]fields={"username","productname","productprice"};
+//        Cursor cursor= database.query("user_cart",fields,"username ="+name,null,null,null,null);
+//
+//        if (cursor!=null)
+//            cursor.moveToFirst();
+//
+//        // database.close();
+//
+//        return cursor;
         database=getReadableDatabase();
+        String []args={name};
         String[]fields={"username","productname","productprice"};
-        Cursor cursor= database.query("user_cart",fields,null,null,null,null,null);
-
+        Cursor cursor=  database.rawQuery("select username , productname , productprice from user_cart where username =? ",args);
         if (cursor!=null)
             cursor.moveToFirst();
-
-        // database.close();
 
         return cursor;
     }

@@ -47,18 +47,28 @@ public class MenActivity extends AppCompatActivity {
         final TextView newText2 = (TextView) findViewById(R.id.text_cart_2);
         final TextView newText3 = (TextView) findViewById(R.id.text_cart_3);
 
+
+        final TextView price1 = (TextView) findViewById(R.id.price1);
+        final TextView price2 = (TextView) findViewById(R.id.price2);
+        final TextView price3 = (TextView) findViewById(R.id.price3);
+//        final TextView price4 = (TextView) findViewById(R.id.price4);
+
         final Cursor cursor = CartDB.getProducts();
 
 
         while(!cursor.isAfterLast()){
             if (count == 0){
                 newText1.setText(cursor.getString(0));
+                price1.setText(cursor.getString(2) + " EGP");
             }
             else if (count == 1){
-                newText3.setText(cursor.getString(0));
+                newText2.setText(cursor.getString(0));
+                price2.setText(cursor.getString(2) + " EGP");
+
             }
             else if(count == 2){
-                newText2.setText(cursor.getString(0));
+                newText3.setText(cursor.getString(0));
+                price3.setText(cursor.getString(2) + " EGP");
             }
             count++;
             cursor.moveToNext();

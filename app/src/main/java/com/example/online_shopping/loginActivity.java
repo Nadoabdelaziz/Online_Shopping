@@ -116,6 +116,11 @@ public class loginActivity extends AppCompatActivity {
                     keepLogin(name, pass);
 
 
+                editor=sharedPreferences.edit();
+                editor.putString("username",name) ;
+                editor.putString("password",pass);
+                editor.apply();
+
                 Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(loginActivity.this, HomeActivity.class);
                 startActivity(intent);

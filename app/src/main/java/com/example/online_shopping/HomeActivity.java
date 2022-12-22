@@ -119,9 +119,9 @@ public class HomeActivity extends AppCompatActivity {
                 editor.apply();
                 Intent intent = new Intent(this, loginActivity.class);
                 startActivity(intent);
-                MyDatabase cartdb = new MyDatabase(getApplicationContext());
-                cartdb.DeleteCartItems();
-                cartdb.DeleteCart();
+//                MyDatabase cartdb = new MyDatabase(getApplicationContext());
+//                cartdb.DeleteCartItems();
+//                cartdb.DeleteCart();
                 return true;
 
             case R.id.action_settings:
