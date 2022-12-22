@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenActivity">
+    tools:context=".WomenActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,7 +90,17 @@
 
                         <TextView
                             android:id="@+id/text_cart_1"
-                            android:layout_width="match_parent"
+                            android:layout_width="74dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:text="Jacket"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price1"
+                            android:layout_width="84dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Jacket"
@@ -126,7 +136,17 @@
 
                         <TextView
                             android:id="@+id/text_cart_2"
-                            android:layout_width="match_parent"
+                            android:layout_width="71dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price2"
+                            android:layout_width="72dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
@@ -162,7 +182,18 @@
 
                         <TextView
                             android:id="@+id/text_cart_3"
-                            android:layout_width="match_parent"
+                            android:layout_width="86dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price3"
+                            android:layout_width="86dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
@@ -199,9 +230,21 @@
                             app:srcCompat="@drawable/zzo" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:id="@+id/text_cart_4"
+                            android:layout_width="81dp"
 
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price4"
+                            android:layout_width="80dp"
+
+                            android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textColor="@android:color/black"

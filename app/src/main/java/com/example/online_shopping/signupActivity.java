@@ -1,5 +1,6 @@
 package com.example.online_shopping;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +30,9 @@ public class signupActivity extends AppCompatActivity {
     EditText gender;
     MyDatabase database;
     DatePickerDialog.OnDateSetListener date;
+//    CalendarView calender = (CalendarView) findViewById(R.id.calendarView2);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,10 @@ public class signupActivity extends AppCompatActivity {
         gender=findViewById(R.id.gender);
         signup_btn=findViewById(R.id.btn_signup);
         database=new MyDatabase(this);
+
+//        calender.setVisibility(View.INVISIBLE);
+
+
         date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -65,6 +74,25 @@ public class signupActivity extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+//        Birthday.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                calender.setVisibility(View.VISIBLE);
+//            }
+//        });
+
+        CalendarView C = (CalendarView) findViewById(R.id.calendarView3);
+        C.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String Date = i2 + "/" + (i1+1) + "/" + i;
+                Birthday.setText(Date);
+            }
+        });
+
+
+
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

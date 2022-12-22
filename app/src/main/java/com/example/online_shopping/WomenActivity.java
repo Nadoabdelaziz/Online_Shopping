@@ -3,6 +3,7 @@ package com.example.online_shopping;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -32,23 +33,36 @@ public class WomenActivity extends AppCompatActivity {
             }
         });
 
-
         final TextView newText1 = (TextView) findViewById(R.id.text_cart_1);
         final TextView newText2 = (TextView) findViewById(R.id.text_cart_2);
         final TextView newText3 = (TextView) findViewById(R.id.text_cart_3);
+        final TextView newText4 = (TextView) findViewById(R.id.text_cart_4);
 
-        Cursor cursor = CartDB.getProducts();
+
+        final TextView price1 = (TextView) findViewById(R.id.price1);
+        final TextView price2 = (TextView) findViewById(R.id.price2);
+        final TextView price3 = (TextView) findViewById(R.id.price3);
+        final TextView price4 = (TextView) findViewById(R.id.price4);
+
+        final Cursor cursor = CartDB.getProducts();
 
 
         while(!cursor.isAfterLast()){
             if (count == 0){
                 newText1.setText(cursor.getString(0));
+                price1.setText(cursor.getString(2) + " EGP");
             }
             else if (count == 1){
-                newText3.setText(cursor.getString(0));
+                newText2.setText(cursor.getString(0));
+                price2.setText(cursor.getString(2) + " EGP");
             }
             else if(count == 2){
-                newText2.setText(cursor.getString(0));
+                newText3.setText(cursor.getString(0));
+                price3.setText(cursor.getString(2) + " EGP");
+            }
+            else if(count == 3){
+                newText4.setText(cursor.getString(0));
+                price4.setText(cursor.getString(2) + " EGP");
             }
             count++;
             cursor.moveToNext();
@@ -56,10 +70,21 @@ public class WomenActivity extends AppCompatActivity {
 
 
 
+//        ImageView jackets = (ImageView) findViewById(R.id.jacket_id);
+
         newText1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CartDB.insertCartItem(newText1.getText().toString());
+                Cursor Prod_price = CartDB.getProductPrice(newText1.getText().toString());
+//                Toast.makeText(getApplicationContext(),Prod_price.getString(0),Toast.LENGTH_LONG).show();
+
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+
+                CartDB.insertIntoCart(newText1.getText().toString(),name,Prod_price.getString(0));
+
+//                CartDB.insertCartItem(newText1.getText().toString());
                 Toast.makeText(getApplicationContext(),"zizo1",Toast.LENGTH_LONG).show();
             }
         });
@@ -67,7 +92,16 @@ public class WomenActivity extends AppCompatActivity {
         newText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CartDB.insertCartItem(newText2.getText().toString());
+//                CartDB.insertCartItem(newText2.getText().toString());
+                Cursor Prod_price = CartDB.getProductPrice(newText2.getText().toString());
+
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+
+
+                CartDB.insertIntoCart(newText2.getText().toString(),name,Prod_price.getString(0));
+
                 Toast.makeText(getApplicationContext(),"zizo2",Toast.LENGTH_LONG).show();
             }
         });
@@ -75,8 +109,28 @@ public class WomenActivity extends AppCompatActivity {
         newText3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CartDB.insertCartItem(newText3.getText().toString());
+//                CartDB.insertCartItem(newText3.getText().toString());
+                Cursor Prod_price = CartDB.getProductPrice(newText3.getText().toString());
+
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+                CartDB.insertIntoCart(newText3.getText().toString(),name,Prod_price.getString(0));
                 Toast.makeText(getApplicationContext(),"zizo3",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        newText4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                CartDB.insertCartItem(newText3.getText().toString());
+                Cursor Prod_price = CartDB.getProductPrice(newText4.getText().toString());
+
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+                CartDB.insertIntoCart(newText4.getText().toString(),name,Prod_price.getString(0));
+                Toast.makeText(getApplicationContext(),"zizo",Toast.LENGTH_LONG).show();
             }
         });
 

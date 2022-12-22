@@ -105,9 +105,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         values.put("productname", Name);
         Integer newpreice = Integer.parseInt(price);
         values.put("productprice",newpreice);
-//        values.put("productprice",cursor.getString(0));
-//        values.put("quantity", cart.getCart_quantity());
-//        values.put("price", cart.getCart_price());
+//       values.put("productprice",cursor.getString(0));
+//       values.put("quantity", cart.getCart_quantity());
+//       values.put("price", cart.getCart_price());
 
         database.insert("user_cart", null, values);
         database.close();
@@ -210,7 +210,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         database=getReadableDatabase();
         String []args={name};
         String[]fields={"username","productname","productprice"};
-        Cursor cursor=  database.rawQuery("select username , productname , productprice from user_cart where username =? ",args);
+        Cursor cursor=  database.rawQuery("select Distinct username , productname , productprice from user_cart where username =? ",args);
         if (cursor!=null)
             cursor.moveToFirst();
 

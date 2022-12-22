@@ -37,21 +37,26 @@ public class MenActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                ProductModel myprod = new ProductModel(26,1,"ProductName4",300);
+//                CartDB.insertProduct(myprod);
+
                 Intent intent = new Intent(getApplicationContext(), submitActivity.class);
                 startActivity(intent);                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
             }
         });
 
+
         final TextView newText1 = (TextView) findViewById(R.id.text_cart_1);
         final TextView newText2 = (TextView) findViewById(R.id.text_cart_2);
         final TextView newText3 = (TextView) findViewById(R.id.text_cart_3);
+        final TextView newText4 = (TextView) findViewById(R.id.text_cart_4);
 
 
         final TextView price1 = (TextView) findViewById(R.id.price1);
         final TextView price2 = (TextView) findViewById(R.id.price2);
         final TextView price3 = (TextView) findViewById(R.id.price3);
-//        final TextView price4 = (TextView) findViewById(R.id.price4);
+        final TextView price4 = (TextView) findViewById(R.id.price4);
 
         final Cursor cursor = CartDB.getProducts();
 
@@ -64,11 +69,14 @@ public class MenActivity extends AppCompatActivity {
             else if (count == 1){
                 newText2.setText(cursor.getString(0));
                 price2.setText(cursor.getString(2) + " EGP");
-
             }
             else if(count == 2){
                 newText3.setText(cursor.getString(0));
                 price3.setText(cursor.getString(2) + " EGP");
+            }
+            else if(count == 3){
+                newText4.setText(cursor.getString(0));
+                price4.setText(cursor.getString(2) + " EGP");
             }
             count++;
             cursor.moveToNext();
@@ -126,6 +134,19 @@ public class MenActivity extends AppCompatActivity {
             }
         });
 
+        newText4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                CartDB.insertCartItem(newText3.getText().toString());
+                Cursor Prod_price = CartDB.getProductPrice(newText4.getText().toString());
+
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+                CartDB.insertIntoCart(newText4.getText().toString(),name,Prod_price.getString(0));
+                Toast.makeText(getApplicationContext(),"zizo",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 
