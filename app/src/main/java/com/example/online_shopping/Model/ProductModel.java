@@ -24,6 +24,14 @@ public class ProductModel {
         this.price = price;
     }
 
+    public ProductModel(int pro_quantity, int catId, String proName, double price) {
+
+        this.pro_quantity = pro_quantity;
+        this.catId = catId;
+        this.proName = proName;
+        this.price = price;
+    }
+
     public ProductModel() {
     }
 

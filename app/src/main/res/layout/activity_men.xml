@@ -85,11 +85,13 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/jacket_id"
                         android:layout_width="331dp"
                         android:layout_height="136dp"
                         android:layout_gravity="center_horizontal" />
 
                     <TextView
+                        android:id="@+id/text_cart_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="16dp"
@@ -125,13 +127,14 @@
                         android:layout_height="80dp" />
 
                     <TextView
-                        android:text="Choose"
+                        android:id="@+id/text_cart_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="16dp"
+                        android:text="Choose"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -160,14 +163,15 @@
                         android:layout_height="80dp" />
 
                     <TextView
-                        android:text="Choose"
+                        android:id="@+id/text_cart_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="16dp"
+                        android:text="Choose"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

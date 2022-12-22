@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.online_shopping.Model.CartModel;
 import com.example.online_shopping.Model.CategoryModel;
 import com.example.online_shopping.Model.CustomerModel;
 import com.example.online_shopping.Model.ProductModel;
@@ -31,6 +32,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.execSQL("create table product (id integer primary key autoincrement, name text not null ,image blob ," +
                 "price real not null , quantity integer not null , cate_id integer not null ," +
                 "foreign key (cate_id)references category (id))");
+
+        db.execSQL("create table cart_items (id integer primary key autoincrement , productname text," +
+                "productid integer,productprice integer)");
     }
 
     @Override
@@ -58,6 +62,19 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    // cart insert
+    public void insertCartItem(String Name) {
+        database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("productname", Name);
+//        values.put("quantity", cart.getCart_quantity());
+//        values.put("price", cart.getCart_price());
+
+        database.insert("cart_items", null, values);
+        database.close();
+
+    }
+
     public Cursor userLogin(String username, String pass) {
         database = getReadableDatabase();
         String[] args = {username, pass};
@@ -70,6 +87,11 @@ public class MyDatabase extends SQLiteOpenHelper {
         database.close();
         return cursor;
 
+    }
+
+    public void dbcereate(){
+        database.execSQL("create table cart_items (id integer primary key autoincrement , productname text," +
+                "productid integer,productprice integer)");
     }
 
     public String getPassword(String mail) {
@@ -103,7 +125,7 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     public Cursor getProducts(){
         database=getReadableDatabase();
-        String[]fields={"id","name","image","price","quantity","cate_id"};
+        String[]fields={"name","image","price","quantity","cate_id"};
        Cursor cursor= database.query("product",fields,null,null,null,null,null);
 
        if (cursor!=null)
@@ -114,6 +136,20 @@ public class MyDatabase extends SQLiteOpenHelper {
        return cursor;
 
 
+    }
+
+
+    public Cursor getCartItems(){
+        database=getReadableDatabase();
+        String[]fields={"productname"};
+        Cursor cursor= database.query("cart_items",fields,null,null,null,null,null);
+
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        // database.close();
+
+        return cursor;
     }
 
     public void insertCategory(CategoryModel cate){

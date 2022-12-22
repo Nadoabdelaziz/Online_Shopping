@@ -8,6 +8,7 @@
 
 
     <ListView
+        android:id="@+id/products_cart"
         android:layout_width="395dp"
         android:layout_height="530dp"
         android:layout_marginStart="8dp"
