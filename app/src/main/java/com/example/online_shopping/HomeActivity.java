@@ -1,11 +1,16 @@
 package com.example.online_shopping;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -34,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 opensubmitActivity();
-               // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
             }
         });
@@ -59,13 +64,74 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton WOMENBTN = (ImageButton) findViewById(R.id.WomenBtn);
+        WOMENBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWomenActivity();
+            }
+        });
+
+        MenuItem Logout = (MenuItem) findViewById(R.id.logout_btn);
+
+
+
+
+//        Logout.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+////                Intent intent = new Intent(this, signupActivity.class);
+////                startActivity(intent);
+////                Boolean login;
+////                SharedPreferences sharedPreferences;
+////                sharedPreferences=getSharedPreferences("remember file",MODE_PRIVATE);
+////                login= sharedPreferences.getBoolean("login",false);
+////                if(login){
+////                    Intent intent=new Intent(HomeActivity.this,signupActivity.class);
+////                    startActivity(intent);
+////                    finish();
+////                }
+//                Toast.makeText(getApplicationContext(), "Please Check username and password", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.logout_btn:
+                Toast.makeText(getApplicationContext(), "Logged Out Successfully", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences;
+                SharedPreferences.Editor editor;
+                sharedPreferences=getSharedPreferences("remember file",MODE_PRIVATE);
+                editor=sharedPreferences.edit();
+                editor.putBoolean("login",false);
+                editor.apply();
+                Intent intent = new Intent(this, loginActivity.class);
+                startActivity(intent);
+                MyDatabase cartdb = new MyDatabase(getApplicationContext());
+                cartdb.DeleteCartItems();
+                cartdb.DeleteCart();
+                return true;
+
+            case R.id.action_settings:
+                SharedPreferences sharedPreferences2;
+                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+                String name = sharedPreferences2.getString("username","");
+                return true;
+
+        }
+        return false;
     }
 
     @Override
@@ -80,6 +146,11 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void openMenActivity() {
         Intent intent = new Intent(this, MenActivity.class);
+        startActivity(intent);
+    }
+
+    public void openWomenActivity() {
+        Intent intent = new Intent(this, WomenActivity.class);
         startActivity(intent);
     }
 }

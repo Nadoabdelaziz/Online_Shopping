@@ -97,6 +97,7 @@ public class loginActivity extends AppCompatActivity {
         String pass = password.getText().toString();
         Cursor cursor = database.userLogin(name, pass);
 
+
      /*   if (name.equals("admin") && pass.equals("admin")) {
             Intent intent = new Intent(Login.this, UploadProduct.class);
             startActivity(intent);
@@ -113,6 +114,7 @@ public class loginActivity extends AppCompatActivity {
 
                 if (rememberme.isChecked())
                     keepLogin(name, pass);
+
 
                 Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(loginActivity.this, HomeActivity.class);
@@ -137,6 +139,7 @@ public class loginActivity extends AppCompatActivity {
         editor.putString("username",username) ;
         editor.putString("password",pass);
         editor.putBoolean("login",true);
+
         editor.apply();
     }
 

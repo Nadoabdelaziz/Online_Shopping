@@ -23,11 +23,25 @@ public class submitActivity extends AppCompatActivity {
         CartList.setAdapter(myadabpter);
 
         MyDatabase newdb = new MyDatabase(getApplicationContext());
-        Cursor cursor = newdb.getCartItems();
-        while (!cursor.isAfterLast()){
-            myadabpter.add(cursor.getString(0));
+        Cursor cursor = newdb.getCart();
+        if(cursor.getCount() == 0){
+            myadabpter.add("No Items Found");
+        }
+        else
+        {
+            String HEADER = "Name" +"                                                                | "+ "Price";
+            myadabpter.add(HEADER);
+            myadabpter.add("\n");
+
+
+            while (!cursor.isAfterLast()) {
+            String Result = cursor.getString(1) +"                                        | "+ cursor.getString(2)+"  EGP";
+            myadabpter.add(Result);
+            
             cursor.moveToNext();
         }
+        }
+
 
     }
 

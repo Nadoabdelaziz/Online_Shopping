@@ -35,6 +35,10 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         db.execSQL("create table cart_items (id integer primary key autoincrement , productname text," +
                 "productid integer,productprice integer)");
+
+        db.execSQL("create table user_cart (id integer primary key autoincrement , username text , productname text," +
+                "productid integer,productprice integer, prodcutqty integer)");
+
     }
 
     @Override
@@ -46,6 +50,21 @@ public class MyDatabase extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
+    public void DeleteCartItems(){
+        database = getWritableDatabase();
+        database.delete("cart_items","id > 0",null);
+        database.close();
+    }
+
+    // new delete Cart
+    public void DeleteCart(){
+        database = getWritableDatabase();
+        database.delete("user_cart","id > 0",null);
+        database.close();
+    }
+
+
 
     public void insertCustomer(CustomerModel cust) {
         database = getWritableDatabase();
@@ -75,6 +94,27 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    // new cart insert
+    public void insertIntoCart(String Name,String username,String price) {
+        database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String[] args = {Name};
+
+//        Cursor cursor = database.rawQuery("select price from product where name =? ", args);
+        values.put("username", username);
+        values.put("productname", Name);
+        Integer newpreice = Integer.parseInt(price);
+        values.put("productprice",newpreice);
+//        values.put("productprice",cursor.getString(0));
+//        values.put("quantity", cart.getCart_quantity());
+//        values.put("price", cart.getCart_price());
+
+        database.insert("user_cart", null, values);
+        database.close();
+
+    }
+
+
     public Cursor userLogin(String username, String pass) {
         database = getReadableDatabase();
         String[] args = {username, pass};
@@ -89,9 +129,12 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
-    public void dbcereate(){
-        database.execSQL("create table cart_items (id integer primary key autoincrement , productname text," +
-                "productid integer,productprice integer)");
+    public void newdb(){
+        database.execSQL("create table user_cart (id integer primary key autoincrement , username text , productname text," +
+                "productid integer,productprice integer, prodcutqty integer)");
+//        database.execSQL("ALTER TABLE  cart_items   ADD COLUMN username text ");
+//        database.execSQL("ALTER TABLE  cart_items   ADD COLUMN prodcutqty integer ");
+//        onCreate(database);
     }
 
     public String getPassword(String mail) {
@@ -152,6 +195,20 @@ public class MyDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // new Get Cart
+    public Cursor getCart(){
+        database=getReadableDatabase();
+        String[]fields={"username","productname","productprice"};
+        Cursor cursor= database.query("user_cart",fields,null,null,null,null,null);
+
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        // database.close();
+
+        return cursor;
+    }
+
     public void insertCategory(CategoryModel cate){
         database=getWritableDatabase();
         ContentValues values=new ContentValues();
@@ -192,6 +249,18 @@ public class MyDatabase extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    // get Product Price
+    public Cursor getProductPrice(String name){
+        database=getReadableDatabase();
+        String []args={name};
+        Cursor cursor=  database.rawQuery("select price from product where name =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor;
+    }
+
     public String getCatId(String name ){
         database=getReadableDatabase();
         String[]args={name};
