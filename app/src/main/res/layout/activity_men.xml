@@ -53,16 +53,14 @@
 
         <GridLayout
             android:id="@+id/mainGrid"
-            android:columnCount="1"
-            android:rowCount="3"
-            android:layout_marginTop="100dp"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:layout_weight="30"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:alignmentMode="alignMargins"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
             android:padding="14dp"
-            >
+            android:rowCount="6">
 
             <!-- Row 1 -->
 
@@ -70,25 +68,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="16dp"
-                >
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:padding="16dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/jacket_id"
                         android:layout_width="331dp"
                         android:layout_height="136dp"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_gravity="center_horizontal"
+                        app:srcCompat="@drawable/g" />
 
                     <TextView
                         android:id="@+id/text_cart_1"
@@ -107,24 +105,24 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="16dp"
-                >
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:padding="16dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
+                        android:layout_width="331dp"
+                        android:layout_height="136dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp" />
+                        app:srcCompat="@drawable/j" />
 
                     <TextView
                         android:id="@+id/text_cart_2"
@@ -143,24 +141,24 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
                 app:cardCornerRadius="16dp"
-                >
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:padding="16dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
+                        android:layout_width="331dp"
+                        android:layout_height="136dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp" />
+                        app:srcCompat="@drawable/r" />
 
                     <TextView
                         android:id="@+id/text_cart_3"
@@ -180,34 +178,35 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="6dp"
+                android:layout_columnWeight="1"
                 android:layout_margin="12dp"
+                android:layout_marginBottom="50dp"
                 app:cardCornerRadius="16dp"
-                >
+                app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:padding="16dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <ImageView
+                        android:layout_width="331dp"
+                        android:layout_height="136dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp" />
+                        app:srcCompat="@drawable/zzo" />
 
                     <TextView
-                        android:text="Choose"
-                        android:layout_marginTop="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
 
+                        android:layout_marginTop="16dp"
+                        android:text="Choose"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

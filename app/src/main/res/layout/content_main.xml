@@ -79,7 +79,7 @@
                         android:layout_width="275dp"
                         android:layout_height="165dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/side_nav_bar" />
+                        android:src="@drawable/women" />
 
                         <TextView
                             android:layout_width="128dp"
@@ -104,12 +104,11 @@
                     app:cardElevation="6dp">
 
 
-
-                        <ImageButton
-                            android:layout_width="275dp"
-                            android:layout_height="165dp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@drawable/download" />
+                    <ImageButton
+                        android:layout_width="275dp"
+                        android:layout_height="165dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/men" />
 
                     <TextView
                         android:layout_width="128dp"

@@ -2,6 +2,7 @@ package com.example.online_shopping;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.online_shopping.Model.CartModel;
 import com.example.online_shopping.Model.ProductModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenActivity extends AppCompatActivity {
 
@@ -18,6 +20,8 @@ public class MenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_men);
+        FloatingActionButton fab = findViewById(R.id.fab);
+
         int count=0;
 
         final MyDatabase CartDB= new MyDatabase(getApplicationContext());
@@ -29,9 +33,17 @@ public class MenActivity extends AppCompatActivity {
 //            Toast.makeText(this, "products exist", Toast.LENGTH_SHORT).show();
 
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), submitActivity.class);
+                startActivity(intent);                // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
+            }
+        });
 
         final TextView newText1 = (TextView) findViewById(R.id.text_cart_1);
-        TextView newText2 = (TextView) findViewById(R.id.text_cart_2);
+        final TextView newText2 = (TextView) findViewById(R.id.text_cart_2);
         final TextView newText3 = (TextView) findViewById(R.id.text_cart_3);
 
         Cursor cursor = CartDB.getProducts();
@@ -58,37 +70,26 @@ public class MenActivity extends AppCompatActivity {
         newText1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                CartModel newCart = new CartModel(newText1.getText().toString());
-//                newCart.setCart_prod_name(newText1.getText().toString());
-//                newCart.setQty(1);
-//                CartDB.dbcereate();
                 CartDB.insertCartItem(newText1.getText().toString());
-                Toast.makeText(getApplicationContext(),"zizo",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"zizo1",Toast.LENGTH_LONG).show();
             }
         });
 
-//        Cursor cursor2 = CartDB.getCartItems();
-//        if (cursor2.getCount() > 0)
-//           Toast.makeText(this, "Cart items exist", Toast.LENGTH_SHORT).show();
-
-
-//        newText2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CartModel newCart = new CartModel();
-//                newCart.setCart_prod_name(newText1.getText().toString());
-//                CartDB.insertCartItem();
-//            }
-//        });
+        newText2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartDB.insertCartItem(newText2.getText().toString());
+                Toast.makeText(getApplicationContext(),"zizo2",Toast.LENGTH_LONG).show();
+            }
+        });
 //
-//        newText3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CartModel newCart = new CartModel();
-//                newCart.setCart_prod_name(newText1.getText().toString());
-//                CartDB.insertCartItem();
-//            }
-//        });
+        newText3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartDB.insertCartItem(newText3.getText().toString());
+                Toast.makeText(getApplicationContext(),"zizo3",Toast.LENGTH_LONG).show();
+            }
+        });
 
 
 
