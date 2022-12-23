@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.online_shopping.Model.ProductModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -124,12 +125,25 @@ public class HomeActivity extends AppCompatActivity {
 //                cartdb.DeleteCart();
                 return true;
 
-            case R.id.action_settings:
-                SharedPreferences sharedPreferences2;
-                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
-                String name = sharedPreferences2.getString("username","");
-                return true;
 
+            case R.id.search_prd:
+                Intent intent2 = new Intent(this, SearchActivity.class);
+                startActivity(intent2);
+
+            case R.id.action_settings:
+//                  MyDatabase DB = new MyDatabase(getApplicationContext());
+//                  ProductModel pr1 = new ProductModel(10,2,"W_product_1",120);
+//                ProductModel pr2 = new ProductModel(10,2,"W_product_2",130);
+//                ProductModel pr3 = new ProductModel(10,2,"W_product_3",140);
+//                ProductModel pr4 = new ProductModel(10,2,"W_product_4",150);
+//                DB.insertProduct(pr1);
+//                DB.insertProduct(pr2);
+//                DB.insertProduct(pr3);
+//                DB.insertProduct(pr4);
+//                SharedPreferences sharedPreferences2;
+//                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
+//                String name = sharedPreferences2.getString("username","");
+                return true;
         }
         return false;
     }

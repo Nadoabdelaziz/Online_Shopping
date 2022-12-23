@@ -78,7 +78,7 @@ public class loginActivity extends AppCompatActivity {
 
     protected void intiView(){
 
-        username=findViewById(R.id.username_login);
+        username=findViewById(R.id.product);
         password=findViewById(R.id.password_login);
         login_btn=findViewById(R.id.btn_login);
         forget_pass=findViewById(R.id.forget_password);

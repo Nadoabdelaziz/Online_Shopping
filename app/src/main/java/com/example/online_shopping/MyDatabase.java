@@ -181,6 +181,18 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getWomenProducts(){
+        database=getReadableDatabase();
+        String [] args={"2"};
+        Cursor cursor=  database.rawQuery("select name,image,price,quantity,cate_id from product where cate_id =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor;
+
+
+    }
+
 
     public Cursor getCartItems(){
         database=getReadableDatabase();
@@ -240,6 +252,17 @@ public class MyDatabase extends SQLiteOpenHelper {
         database=getReadableDatabase();
         String []args={cate};
       Cursor cursor=  database.rawQuery("select * from product where cate_id =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor;
+
+    }
+
+    public Cursor getProductByName(String name){
+        database=getReadableDatabase();
+        String []args={name};
+        Cursor cursor=  database.rawQuery("select * from product where name =? ",args);
         if (cursor!=null)
             cursor.moveToFirst();
 

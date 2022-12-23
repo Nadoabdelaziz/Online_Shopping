@@ -90,7 +90,7 @@
 
                         <TextView
                             android:id="@+id/text_cart_1"
-                            android:layout_width="74dp"
+                            android:layout_width="325dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Jacket"
@@ -136,7 +136,7 @@
 
                         <TextView
                             android:id="@+id/text_cart_2"
-                            android:layout_width="71dp"
+                            android:layout_width="328dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
@@ -182,7 +182,7 @@
 
                         <TextView
                             android:id="@+id/text_cart_3"
-                            android:layout_width="86dp"
+                            android:layout_width="324dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
@@ -231,7 +231,7 @@
 
                         <TextView
                             android:id="@+id/text_cart_4"
-                            android:layout_width="81dp"
+                            android:layout_width="325dp"
 
                             android:layout_height="match_parent"
                             android:layout_marginTop="16dp"
