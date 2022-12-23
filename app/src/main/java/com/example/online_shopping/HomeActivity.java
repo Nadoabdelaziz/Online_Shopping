@@ -143,6 +143,8 @@ public class HomeActivity extends AppCompatActivity {
 //                SharedPreferences sharedPreferences2;
 //                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
 //                String name = sharedPreferences2.getString("username","");
+//                Intent intent3 = new Intent(this, VoiceSearchFragment.class);
+//                startActivity(intent3);
                 return true;
         }
         return false;

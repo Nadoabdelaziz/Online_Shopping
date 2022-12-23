@@ -2,13 +2,17 @@ package com.example.online_shopping;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.online_shopping.Model.ProductModel;
 
@@ -20,12 +24,28 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         final EditText product_name = (EditText) findViewById(R.id.product);
-        ListView products_list = (ListView)(findViewById(R.id.products_list));
+        final ListView products_list = (ListView)(findViewById(R.id.products_list));
 
         final ArrayAdapter<String> myadabpter = new ArrayAdapter<String> (getApplicationContext(),
                 android.R.layout.simple_list_item_1);
         products_list.setAdapter(myadabpter);
 
+
+        products_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = products_list.getItemAtPosition(position).toString();
+                if(item.contains("WOMENS")){
+                    Intent intent = new Intent(getApplicationContext(), WomenActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), MenActivity.class);
+                    startActivity(intent);
+                }
+                Toast.makeText(getApplicationContext(),item,Toast.LENGTH_LONG).show();
+            }
+        });
 
         product_name.addTextChangedListener(new TextWatcher() {
             @Override
