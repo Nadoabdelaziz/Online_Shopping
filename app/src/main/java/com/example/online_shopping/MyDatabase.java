@@ -193,6 +193,18 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getMenProducts(){
+        database=getReadableDatabase();
+        String [] args={"1"};
+        Cursor cursor=  database.rawQuery("select name,image,price,quantity,cate_id from product where cate_id =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor;
+
+
+    }
+
 
     public Cursor getCartItems(){
         database=getReadableDatabase();

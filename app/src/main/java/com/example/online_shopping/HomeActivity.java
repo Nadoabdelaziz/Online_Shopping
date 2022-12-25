@@ -132,10 +132,10 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.action_settings:
 //                  MyDatabase DB = new MyDatabase(getApplicationContext());
-//                  ProductModel pr1 = new ProductModel(10,2,"W_product_1",120);
-//                ProductModel pr2 = new ProductModel(10,2,"W_product_2",130);
-//                ProductModel pr3 = new ProductModel(10,2,"W_product_3",140);
-//                ProductModel pr4 = new ProductModel(10,2,"W_product_4",150);
+//                  ProductModel pr1 = new ProductModel(10,1,"product",120);
+//                ProductModel pr2 = new ProductModel(10,1,"myproduct",130);
+//                ProductModel pr3 = new ProductModel(10,1,"product1",140);
+//                ProductModel pr4 = new ProductModel(10,1,"product2",150);
 //                DB.insertProduct(pr1);
 //                DB.insertProduct(pr2);
 //                DB.insertProduct(pr3);
@@ -143,8 +143,9 @@ public class HomeActivity extends AppCompatActivity {
 //                SharedPreferences sharedPreferences2;
 //                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
 //                String name = sharedPreferences2.getString("username","");
-//                Intent intent3 = new Intent(this, VoiceSearchFragment.class);
-//                startActivity(intent3);
+                Intent intent3 = new Intent(this, VoiceTestActivity.class);
+                startActivity(intent3);
+                Toast.makeText(getApplicationContext(), "Products Created", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return false;

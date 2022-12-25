@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class VoiceSearchFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -78,17 +80,35 @@ public class VoiceSearchFragment extends Fragment {
         if (requestCode == voiceCode && resultCode == getActivity().RESULT_OK){
             ArrayList <String> text2 = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             text.setText(text2.get(0));
-        }
+
         ArrayAdapter<String> ProductsAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1);
         mylist.setAdapter(ProductsAdapter);
 
+        Cursor matchedProducts = DB.getProductByName(text2.get(0));
+
+        if(matchedProducts !=null){
+
+            while (! matchedProducts.isAfterLast()){
+                ProductsAdapter.add(matchedProducts.getString(1));
+                matchedProducts.moveToNext();
+            }
+        }
+        else {
+            Toast.makeText(getActivity(), "No matched products",Toast.LENGTH_LONG).show();
+        }
+
+        }
         super.onActivityResult(requestCode, resultCode, data);
+
+
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View rootview = inflater.inflate(R.layout.fragment_voice_search,container,false);
 
         DB= new MyDatabase(getActivity());
@@ -97,19 +117,14 @@ public class VoiceSearchFragment extends Fragment {
         ImageButton voicebtn = (ImageButton) rootview.findViewById(R.id.voice_record);
 
 
-//        voicebtn.setOnClickListener(View.OnClickListener);
-//                voicebtn.setOnClickListener(View.OnClickListener() {
-//                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//                startActivityForResult(intent, voiceCode);
-//        });
-
         voicebtn.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                                            startActivityForResult(intent, voiceCode);
-                                        }
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                startActivityForResult(intent, voiceCode);
+            }
         });
+
 
         // Inflate the layout for this fragment
         return rootview;

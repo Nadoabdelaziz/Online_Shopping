@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".VoiceTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SimplePagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity android:name=".RecoveryPassword" />

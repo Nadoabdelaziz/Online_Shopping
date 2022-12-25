@@ -58,7 +58,7 @@ public class MenActivity extends AppCompatActivity {
         final TextView price3 = (TextView) findViewById(R.id.price3);
         final TextView price4 = (TextView) findViewById(R.id.price4);
 
-        final Cursor cursor = CartDB.getProducts();
+        final Cursor cursor = CartDB.getMenProducts();
 
 
         while(!cursor.isAfterLast()){

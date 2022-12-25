@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MenActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="800dp"
+        android:layout_height="wrap_content"
         >
 
         <LinearLayout
             android:orientation="vertical"
             android:weightSum="10"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:layout_weight="2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
                 >
 
 
@@ -54,7 +57,7 @@
             <GridLayout
                 android:id="@+id/mainGrid"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="30"
                 android:alignmentMode="alignMargins"
                 android:columnCount="1"
@@ -76,7 +79,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -91,7 +94,7 @@
                         <TextView
                             android:id="@+id/text_cart_1"
                             android:layout_width="325dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Jacket"
                             android:textColor="@android:color/black"
@@ -101,7 +104,7 @@
                         <TextView
                             android:id="@+id/price1"
                             android:layout_width="84dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Jacket"
                             android:textColor="@android:color/black"
@@ -123,7 +126,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -137,7 +140,7 @@
                         <TextView
                             android:id="@+id/text_cart_2"
                             android:layout_width="328dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textColor="@android:color/black"
@@ -147,7 +150,7 @@
                         <TextView
                             android:id="@+id/price2"
                             android:layout_width="72dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textColor="@android:color/black"
@@ -169,7 +172,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -183,7 +186,7 @@
                         <TextView
                             android:id="@+id/text_cart_3"
                             android:layout_width="324dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textAlignment="center"
@@ -194,7 +197,7 @@
                         <TextView
                             android:id="@+id/price3"
                             android:layout_width="86dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textAlignment="center"
@@ -218,7 +221,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -233,7 +236,7 @@
                             android:id="@+id/text_cart_4"
                             android:layout_width="325dp"
 
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textColor="@android:color/black"
@@ -244,7 +247,201 @@
                             android:id="@+id/price4"
                             android:layout_width="80dp"
 
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"
+                    android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="331dp"
+                            android:layout_height="136dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@drawable/zzo" />
+
+                        <TextView
+                            android:id="@+id/text_cart_4"
+                            android:layout_width="325dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price4"
+                            android:layout_width="80dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"
+                    android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="331dp"
+                            android:layout_height="136dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@drawable/zzo" />
+
+                        <TextView
+                            android:id="@+id/text_cart_4"
+                            android:layout_width="325dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price4"
+                            android:layout_width="80dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"
+                    android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="331dp"
+                            android:layout_height="136dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@drawable/zzo" />
+
+                        <TextView
+                            android:id="@+id/text_cart_4"
+                            android:layout_width="325dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price4"
+                            android:layout_width="80dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="12dp"
+                    android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="331dp"
+                            android:layout_height="136dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@drawable/zzo" />
+
+                        <TextView
+                            android:id="@+id/text_cart_4"
+                            android:layout_width="325dp"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Choose"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/price4"
+                            android:layout_width="80dp"
+
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="Choose"
                             android:textColor="@android:color/black"
