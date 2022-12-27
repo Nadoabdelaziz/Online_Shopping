@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class submitActivity extends AppCompatActivity {
@@ -23,13 +25,14 @@ public class submitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
 
-
+        final MyDatabase newdb = new MyDatabase(getApplicationContext());
 
         final ListView CartList = (ListView) findViewById(R.id.products_cart);
         final ArrayAdapter <String> myadabpter = new ArrayAdapter<String> (getApplicationContext(),
                 android.R.layout.simple_list_item_1);
         CartList.setAdapter(myadabpter);
 
+        Button btn = (Button) findViewById(R.id.button2);
         final ListView CartListprice = (ListView) findViewById(R.id.products_cart2);
         final ArrayAdapter <String> myadabpterprice = new ArrayAdapter<String> (getApplicationContext(),
                 android.R.layout.simple_list_item_1);
@@ -40,49 +43,74 @@ public class submitActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1);
         CartListqty.setAdapter(myadabpterqty);
 
+        final TextView qty_control = (TextView) findViewById(R.id.Total_Price);
+
+
+
+
 
         int qty1 = 1;
         int qty2 = 1;
         int qty3 = 1;
         int qty4 = 1;
 
-        final EditText qty_control = (EditText) findViewById(R.id.qty_control);
 //        qty_control.setText("1");
-
-
-
 
         CartListqty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = CartListqty.getItemAtPosition(position).toString();
-//                String newitem = item.replaceAll("[^0-9]","");
-                qty_control.setText(item);
-                myadabpterqty.remove(CartListqty.getItemAtPosition(position).toString());
-//                myadabpterqty.add(qty_control.getText().toString());
-//                Toast.makeText(getApplicationContext(),qty_control.getText().toString(),Toast.LENGTH_LONG).show();
-//                qty1[0]++;
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String x = String.valueOf(i);
+                  String prod_name = String.valueOf(CartList.getItemAtPosition(i));
+                  String Porname = newdb.getProductIDByName(prod_name);
+                  newdb.IncreamentProductCart(Integer.parseInt(Porname));
 
-//                Toast.makeText(getApplicationContext(),Integer.parseInt(qty_control.toString()),Toast.LENGTH_LONG).show();
-//                qty1[0] = Integer.parseInt(qty_control.toString());
 
+//
+//                String Price = String.valueOf(CartListprice.getItemAtPosition(i));
+//
+//
+//
+//
+//                qty_control.setText("asd");
+
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+
+
+
+//                Toast.makeText(getApplicationContext(), x, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(submitActivity.this, String.valueOf(CartList.getItemAtPosition(i)), Toast.LENGTH_SHORT).show();
             }
         });
 
-        qty_control.addTextChangedListener(new TextWatcher() {
+
+//        CartListqty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String item = CartListqty.getItemAtPosition(position).toString();
+////                String newitem = item.replaceAll("[^0-9]","");
+//                qty_control.setText(item);
+//                myadabpterqty.remove(CartListqty.getItemAtPosition(position).toString());
+////                myadabpterqty.add(qty_control.getText().toString());
+////                Toast.makeText(getApplicationContext(),qty_control.getText().toString(),Toast.LENGTH_LONG).show();
+////                qty1[0]++;
+//
+////                Toast.makeText(getApplicationContext(),Integer.parseInt(qty_control.toString()),Toast.LENGTH_LONG).show();
+////                qty1[0] = Integer.parseInt(qty_control.toString());
+//
+//            }
+//        });
+
+
+
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                myadabpterqty.add(qty_control.getText().toString());
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+            public void onClick(View view) {
 
             }
         });
@@ -94,8 +122,9 @@ public class submitActivity extends AppCompatActivity {
 
 //        int qty1=1,qty2 = 1, qty3=1;
 
-        MyDatabase newdb = new MyDatabase(getApplicationContext());
-        Cursor cursor = newdb.getCart(name);
+//        Cursor cursor = newdb.getCart(name);
+        Cursor cursor = newdb.GetCartOfZizo(name);
+
         if(cursor.getCount() == 0){
 //            myadabpter.add(name);
             myadabpter.add("No Items Found");
@@ -111,16 +140,21 @@ public class submitActivity extends AppCompatActivity {
 
             myadabpterqty.add("QTY");
 
+//            String nameprod = cursor.getString(0).toString();
 
 //          if(cursor.getString(0).equals(name)){
                 while (!cursor.isAfterLast()) {
 //                    for (int i =0;i<CartList.getCount();i++){
 //                        if(cursor.getString(1).equals(Cart))
 //                    }
-                    String Result = cursor.getString(1);
-                    myadabpter.add(Result);
-                    myadabpterprice.add(cursor.getString(2) + "  EGP");
-                    myadabpterqty.add(String.valueOf(qty1));
+                    String id = newdb.getProductbyId(cursor.getInt(0));
+
+                    String price = newdb.getSingleOrderPice(id,cursor.getInt(1));
+//                    Toast.makeText(this, price, Toast.LENGTH_SHORT).show();
+
+                    myadabpter.add(id.toString());
+                    myadabpterprice.add(price);
+                    myadabpterqty.add(cursor.getString(1));
 
                     cursor.moveToNext();
                 }
@@ -130,7 +164,23 @@ public class submitActivity extends AppCompatActivity {
         }
 
 
+
+        Integer Total = 0;
+        for (int j =1 ; j <CartListprice.getAdapter().getCount();j++){
+
+           Total += Integer.parseInt(String.valueOf(CartListprice.getItemAtPosition(j)));
+//           Toast.makeText(getApplicationContext(), String.valueOf(CartListprice.getItemAtPosition(1)), Toast.LENGTH_SHORT).show();
+
+        }
+
+
+//        String Price = String.valueOf(CartListprice.getAdapter().getCount());
+        qty_control.setText(String.valueOf(Total));
+
+
     }
+
+
 
 
 }

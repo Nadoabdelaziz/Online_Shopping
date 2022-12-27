@@ -143,8 +143,10 @@ public class HomeActivity extends AppCompatActivity {
 //                SharedPreferences sharedPreferences2;
 //                sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
 //                String name = sharedPreferences2.getString("username","");
-                Intent intent3 = new Intent(this, VoiceTestActivity.class);
-                startActivity(intent3);
+                  MyDatabase DB = new MyDatabase(getApplicationContext());
+                  DB.newdb();
+//                Intent intent3 = new Intent(this, SimplePagerActivity.class);
+//                startActivity(intent3);
                 Toast.makeText(getApplicationContext(), "Products Created", Toast.LENGTH_SHORT).show();
                 return true;
         }

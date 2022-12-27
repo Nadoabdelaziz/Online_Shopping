@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -39,7 +41,88 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.execSQL("create table user_cart (id integer primary key autoincrement , username text , productname text," +
                 "productid integer,productprice integer, prodcutqty integer)");
 
+//        database.execSQL("create table orders (id integer primary key autoincrement , product_qty integer," +
+//                "foreign key (product_id)references product(id), foreign key (customer_id)references customer(id))");
+//
+//        database.execSQL("create table final_Cart (id integer primary key autoincrement ,total_price integer,total_qty integer ," +
+//                "foreign key(order_id)references orders(id))");
+//        db.execSQL("create table orders (id integer primary key autoincrement , product_qty integer," +
+//                "foreign key (product_id)references product (id), foreign key (customer_id)references customer (id))");
+//
+//        db.execSQL("create table final_Cart (id integer primary key autoincrement ,total_price integer," +
+//                "total_qty integer , foreign key (order_id) references orders (id))");
+
+//        db.execSQL("create table orders (id integer primary key autoincrement, productqty integer ," +
+//                "foreign key (product_id)references product (id),foreign key (id)references customer (id))");
+
+     //   database.execSQL("CREATE TABLE orders(id INTEGER PRIMARY KEY,\n" +
+//                "  product_qty  INTEGER,\n" +
+//                "  product_id  INTEGER,\n" +
+//                "  customer_id INTEGER,\n" +
+//                "  FOREIGN KEY (product_id) REFERENCES product (id),\n" +
+//                "  FOREIGN KEY (customer_id) REFERENCES customer (id))");
+//
+//        database.execSQL("CREATE TABLE final_cart(id INTEGER PRIMARY KEY,\n" +
+//                "  total_price  INTEGER,\n" +
+//                "  total_qty  INTEGER,\n" +
+//                "  order_id INTEGER,\n" +
+//                "  FOREIGN KEY (order_id) REFERENCES orders (id))");
     }
+
+
+
+    // zizo final edits
+    public void AddToCartZizo(String ProductName,String User){
+        database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+
+        String[] Prodargs = {ProductName};
+        String[] Custargs ={User};
+        Cursor cursorProd=  database.rawQuery("select id from product where name =? ",Prodargs);
+
+        Cursor cursorCust=  database.rawQuery("select id from customer where name =? ",Custargs);
+
+        cursorProd.moveToFirst();
+        cursorCust.moveToFirst();
+
+//        Log.e("cart",cursorCust.getString(0));
+//        Log.e("cart",cursorProd.getString(0));
+
+        if(cursorProd.getCount() > 0){
+            values.put("product_qty", 1);
+            values.put("product_id", cursorProd.getString(0));
+            values.put("customer_id", cursorCust.getString(0));
+            database.insert("orders", null, values);
+        }
+
+
+        database.close();
+    }
+
+    public Cursor GetCartOfZizo(String User){
+        database = getReadableDatabase();
+//        ContentValues values = new ContentValues();
+
+        String[] UserArgs = {User};
+        Cursor cursorCust=  database.rawQuery("select id from customer where name =? ",UserArgs);
+        cursorCust.moveToFirst();
+
+
+        String [] user={cursorCust.getString(0)};
+//        String [] columns = {"product_id,customer_id,product_qty"};
+
+        Cursor cursorCart=  database.rawQuery("select product_id,product_qty from orders where customer_id =? ",user);
+
+//        Cursor cursor= database.query("orders",columns,null,null,null,null,null);
+
+        if (cursorCart!=null)
+            cursorCart.moveToFirst();
+
+        return cursorCart;
+
+    }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -81,9 +164,58 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+
+
+    public String IncreamentProductCart(int product_id) {
+        database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        String[] id = {String.valueOf(product_id)};
+        Cursor cursor = database.rawQuery("select product_qty from orders where product_id =?",id);
+        cursor.moveToFirst();
+
+        String qty = String.valueOf(cursor.getInt(0)+1);
+
+        values.put("product_qty",qty);
+
+        database.update("orders",values,"product_id =?",id);
+
+//        database.insert("customer", null, values);
+//        database.close();
+
+        return cursor.getString(0);
+
+    }
+
+    public String DecreamentProductCart(int product_id) {
+        database = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        String[] id = {String.valueOf(product_id)};
+        Cursor cursor = database.rawQuery("select product_qty from orders where product_id =?",id);
+        cursor.moveToFirst();
+
+        String qty = String.valueOf(cursor.getInt(0)-1);
+
+        values.put("product_qty",qty);
+
+        database.update("orders",values,"product_id =?",id);
+
+//        database.insert("customer", null, values);
+//        database.close();
+
+        return cursor.getString(0);
+
+    }
+
+
+
     // cart insert
     public void insertCartItem(String Name) {
         database = getWritableDatabase();
+
         ContentValues values = new ContentValues();
         values.put("productname", Name);
 //        values.put("quantity", cart.getCart_quantity());
@@ -97,6 +229,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     // new cart insert
     public void insertIntoCart(String Name,String username,String price) {
         database = getWritableDatabase();
+//
         ContentValues values = new ContentValues();
         String[] args = {Name};
 
@@ -124,14 +257,101 @@ public class MyDatabase extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
+
         database.close();
+
         return cursor;
 
     }
 
     public void newdb(){
-        database.execSQL("create table user_cart (id integer primary key autoincrement , username text , productname text," +
-                "productid integer,productprice integer, prodcutqty integer)");
+//        database = getWritableDatabase();
+//
+//        database.execSQL("Drop table orders");
+//        database.execSQL("Drop table final_cart");
+//
+//
+//        database.execSQL("CREATE TABLE orders(id INTEGER PRIMARY KEY,\n" +
+//                "  product_qty  INTEGER,\n" +
+//                "  product_id  INTEGER,\n" +
+//                "  customer_id INTEGER,\n" +
+//                "  FOREIGN KEY (product_id) REFERENCES product (id),\n" +
+//                "  FOREIGN KEY (customer_id) REFERENCES customer (id))");
+//
+//        database.execSQL("CREATE TABLE final_cart(id INTEGER PRIMARY KEY,\n" +
+//                "  total_price  INTEGER,\n" +
+//                "  total_qty  INTEGER,\n" +
+//                "  order_id INTEGER,\n" +
+//                "  FOREIGN KEY (order_id) REFERENCES orders (id))");
+
+
+
+
+
+
+        //       String tableorders = "create table orders (id integer primary key autoincrement , product_qty integer," +
+//                "foreign key (product_id)references product(id), foreign key (customer_id)references customer(id))";
+
+//                database.execSQL("CREATE TABLE orders(id INTEGER PRIMARY KEY," +
+//                        "  product_qty  INTEGER," +
+//                        "  FOREIGN KEY (prod_id) REFERENCES product (id))");
+
+//        database.execSQL("Drop table newtest2");
+//        database.execSQL("Drop table timesheets");
+//
+//        database.execSQL("CREATE TABLE orders(Id INTEGER PRIMARY KEY," +
+//                "  Product_Qty  INTEGER," +
+//                "  User_Id INTEGER," +
+//                "  FOREIGN KEY (Prod_Id) REFERENCES product (Id))");
+//        database.execSQL("CREATE TABLE myorders(Id INTEGER PRIMARY KEY," +
+//                "  Project_Id  INTEGER," +
+//                "  Week_Id INTEGER," +
+//                "  FOREIGN KEY (Product_Id) REFERENCES product (id))");
+
+//        database.execSQL("CREATE TABLE orders(Id INTEGER PRIMARY KEY," +
+//                "  Product_Qty  INTEGER," +
+//                "  User_Id INTEGER," +
+//                "  FOREIGN KEY (Product_Id) REFERENCES product (id))");
+
+//        database.execSQL("CREATE TABLE final_cart(Id INTEGER PRIMARY KEY," +
+//                "  Total_Price INTEGER," +
+//                "  Total_Qty INTEGER," +
+//                "  FOREIGN KEY (Order_Id) REFERENCES orders (id))");
+        //
+//        dat.execSQL("PRAGMA foreign_keys=ON");
+//        database.execSQL("create table orders (id integer primary key autoincrement , product_qty Integer ," +
+//                " product_id integer,customer_id integer,foreign key (product_id ) " +
+//                "references product (id), foreign key (customer_id)references customer (id))");
+//
+//        database.execSQL("create table final_Cart (id integer primary key autoincrement ,total_price Integer," +
+//                "total_qty integer ,order_id integer ,foreign key (order_id) references orders (id))");
+
+//        database.execSQL("Drop table orders");
+//        database.execSQL("create table orders (id integer primary key autoincrement, productqty integer)");
+//
+//        String TASK_TABLE_CREATE = "create table orders (id integer primary key autoincrement, "
+//                + "product_qty integer, "
+//                + " product_id)";
+
+//        String[]fields={"id"};
+//        Cursor cursor = database.query("product",fields,null,null,null,null,null);
+//        Cursor cursor = database.query("select password from customer where email =?", args);
+
+//        database.execSQL("create table orders (id INTEGER PRIMARY KEY AUTOINCREMENT, product_qty INTEGER, " +
+//                "FOREIGN KEY (product_id) REFERENCES product (_id)," +
+//        "FOREIGN KEY (USER_ID) REFERENCES customer (_id))");
+//        database.execSQL(TASK_TABLE_CREATE);
+//        database.execSQL("create table user_cart (id integer primary key autoincrement , username text , productname text," +
+//                "productid integer,productprice integer, prodcutqty integer)");
+//        database = getWritableDatabase();
+//        database.execSQL("create table orders (id integer primary key autoincrement , product_qty integer," +
+//                "foreign key (product_id)references product(id), foreign key (customer_id)references customer(id))");
+//
+//        database.execSQL("create table final_Cart (id integer primary key autoincrement ,total_price integer,total_qty integer ," +
+//                "foreign key(order_id)references orders(id))");
+        database.close();
+
+
 //        database.execSQL("ALTER TABLE  cart_items   ADD COLUMN username text ");
 //        database.execSQL("ALTER TABLE  cart_items   ADD COLUMN prodcutqty integer ");
 //        onCreate(database);
@@ -153,16 +373,19 @@ public class MyDatabase extends SQLiteOpenHelper {
         return null;
     }
 
+
     public void insertProduct(ProductModel product){
         database=getWritableDatabase();
         ContentValues values=new ContentValues();
-        values.put("name",product.getProName());
+
+       values.put("name",product.getProName());
         values.put("image",product.getProImage());
         values.put("price",product.getPrice());
         values.put("quantity",product.getPro_quantity());
         values.put("cate_id",product.getCatId());
 
         database.insert("product",null,values);
+
         database.close();
     }
 
@@ -271,6 +494,17 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
+    public String getProductbyId(int id){
+        database=getReadableDatabase();
+        String []args={String.valueOf(id)};
+        Cursor cursor=  database.rawQuery("select name from product where id =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor.getString(0);
+
+    }
+
     public Cursor getProductByName(String name){
         database=getReadableDatabase();
         String []args={name};
@@ -279,6 +513,17 @@ public class MyDatabase extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         return cursor;
+
+    }
+
+    public String getProductIDByName(String name){
+        database=getReadableDatabase();
+        String []args={name};
+        Cursor cursor=  database.rawQuery("select id from product where name =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+        return cursor.getString(0);
 
     }
 
@@ -302,6 +547,19 @@ public class MyDatabase extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         return cursor;
+    }
+
+    public String getSingleOrderPice(String name, int qty){
+        database=getReadableDatabase();
+        String []args={name};
+        Cursor cursor=  database.rawQuery("select price from product where name =? ",args);
+        if (cursor!=null)
+            cursor.moveToFirst();
+
+
+        Integer Price = qty * cursor.getInt(0);
+
+        return String.valueOf(Price);
     }
 
     public String getCatId(String name ){

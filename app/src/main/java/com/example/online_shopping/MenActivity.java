@@ -26,6 +26,8 @@ public class MenActivity extends AppCompatActivity {
         int count=0;
 
         final MyDatabase CartDB= new MyDatabase(getApplicationContext());
+
+
 //        ProductModel myprod = new ProductModel(27,1,"ProductName3",275);
 //
 //        CartDB.insertProduct(myprod);
@@ -96,7 +98,10 @@ public class MenActivity extends AppCompatActivity {
                 sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
                 String name = sharedPreferences2.getString("username","");
 
-                CartDB.insertIntoCart(newText1.getText().toString(),name,Prod_price.getString(0));
+                //zizo edited here
+//                Toast.makeText(MenActivity.this, newText1.getText().toString(), Toast.LENGTH_SHORT).show();
+                CartDB.AddToCartZizo(newText1.getText().toString(),name);
+//                CartDB.insertIntoCart(newText1.getText().toString(),name,Prod_price.getString(0));
 
 //                CartDB.insertCartItem(newText1.getText().toString());
                 Toast.makeText(getApplicationContext(),"zizo1",Toast.LENGTH_LONG).show();

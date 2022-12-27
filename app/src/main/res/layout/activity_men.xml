@@ -282,7 +282,7 @@
                             app:srcCompat="@drawable/zzo" />
 
                         <TextView
-                            android:id="@+id/text_cart_4"
+                            android:id="@+id/text_cart_5"
                             android:layout_width="325dp"
 
                             android:layout_height="wrap_content"
@@ -293,7 +293,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/price4"
+                            android:id="@+id/price5"
                             android:layout_width="80dp"
 
                             android:layout_height="wrap_content"
@@ -331,7 +331,7 @@
                             app:srcCompat="@drawable/zzo" />
 
                         <TextView
-                            android:id="@+id/text_cart_4"
+                            android:id="@+id/text_cart_6"
                             android:layout_width="325dp"
 
                             android:layout_height="wrap_content"
@@ -342,7 +342,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/price4"
+                            android:id="@+id/price6"
                             android:layout_width="80dp"
 
                             android:layout_height="wrap_content"
@@ -379,7 +379,7 @@
                             app:srcCompat="@drawable/zzo" />
 
                         <TextView
-                            android:id="@+id/text_cart_4"
+                            android:id="@+id/text_cart_7"
                             android:layout_width="325dp"
 
                             android:layout_height="wrap_content"
@@ -390,7 +390,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/price4"
+                            android:id="@+id/price7"
                             android:layout_width="80dp"
 
                             android:layout_height="wrap_content"
@@ -427,7 +427,7 @@
                             app:srcCompat="@drawable/zzo" />
 
                         <TextView
-                            android:id="@+id/text_cart_4"
+                            android:id="@+id/text_cart_8"
                             android:layout_width="325dp"
 
                             android:layout_height="wrap_content"
@@ -438,7 +438,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/price4"
+                            android:id="@+id/price"
                             android:layout_width="80dp"
 
                             android:layout_height="wrap_content"
