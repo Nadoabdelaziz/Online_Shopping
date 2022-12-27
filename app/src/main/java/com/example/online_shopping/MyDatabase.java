@@ -78,6 +78,8 @@ public class MyDatabase extends SQLiteOpenHelper {
 
         String[] Prodargs = {ProductName};
         String[] Custargs ={User};
+
+
         Cursor cursorProd=  database.rawQuery("select id from product where name =? ",Prodargs);
 
         Cursor cursorCust=  database.rawQuery("select id from customer where name =? ",Custargs);
@@ -85,16 +87,31 @@ public class MyDatabase extends SQLiteOpenHelper {
         cursorProd.moveToFirst();
         cursorCust.moveToFirst();
 
+        String[] args ={cursorProd.getString(0),cursorCust.getString(0)};
+
+        Cursor orders = database.rawQuery("select product_qty from orders where product_id =? and customer_id =?",args);
 //        Log.e("cart",cursorCust.getString(0));
 //        Log.e("cart",cursorProd.getString(0));
+        orders.moveToFirst();
 
-        if(cursorProd.getCount() > 0){
-            values.put("product_qty", 1);
-            values.put("product_id", cursorProd.getString(0));
-            values.put("customer_id", cursorCust.getString(0));
-            database.insert("orders", null, values);
+        if(orders.getCount() > 0){
+            String[] prod ={String.valueOf(cursorProd.getString(0))};
+            int value = Integer.parseInt(orders.getString(0)) + 1;
+            values.put("product_qty", value);
+            database.update("orders",values,"product_id =?",prod);
+
+//            Log.e("zizo",String.valueOf(orders.getString(0)));
+
         }
-
+        else {
+            if (cursorProd.getCount() > 0) {
+                values.put("product_qty", 1);
+                values.put("product_id", cursorProd.getString(0));
+                values.put("customer_id", cursorCust.getString(0));
+                database.insert("orders", null, values);
+            }
+//        }
+        }
 
         database.close();
     }
@@ -137,6 +154,13 @@ public class MyDatabase extends SQLiteOpenHelper {
     public void DeleteCartItems(){
         database = getWritableDatabase();
         database.delete("cart_items","id > 0",null);
+        database.close();
+    }
+
+    public void DeleteOrderItem(int id){
+        database = getWritableDatabase();
+        String[] newid= {String.valueOf(id)};
+        database.execSQL("Delete from orders where product_id =?",newid);
         database.close();
     }
 

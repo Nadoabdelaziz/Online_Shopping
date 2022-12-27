@@ -32,6 +32,21 @@ public class submitActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1);
         CartList.setAdapter(myadabpter);
 
+        final ListView DeleteList = (ListView) findViewById(R.id.Deletebtn);
+        final ArrayAdapter <String> deleteadpt = new ArrayAdapter<String> (getApplicationContext(),
+                android.R.layout.simple_list_item_1);
+        DeleteList.setAdapter(deleteadpt);
+
+        final ListView PlusList = (ListView) findViewById(R.id.Plus_btn);
+        final ArrayAdapter <String> PlusAdapt = new ArrayAdapter<String> (getApplicationContext(),
+                android.R.layout.simple_list_item_1);
+        PlusList.setAdapter(PlusAdapt);
+
+        final ListView MinusList = (ListView) findViewById(R.id.Minus_btn);
+        final ArrayAdapter <String> MinusAdapt = new ArrayAdapter<String> (getApplicationContext(),
+                android.R.layout.simple_list_item_1);
+        MinusList.setAdapter(MinusAdapt);
+
         Button btn = (Button) findViewById(R.id.button2);
         final ListView CartListprice = (ListView) findViewById(R.id.products_cart2);
         final ArrayAdapter <String> myadabpterprice = new ArrayAdapter<String> (getApplicationContext(),
@@ -56,35 +71,80 @@ public class submitActivity extends AppCompatActivity {
 
 //        qty_control.setText("1");
 
-        CartListqty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        DeleteList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String x = String.valueOf(i);
-                  String prod_name = String.valueOf(CartList.getItemAtPosition(i));
-                  String Porname = newdb.getProductIDByName(prod_name);
-                  newdb.IncreamentProductCart(Integer.parseInt(Porname));
-
-
-//
-//                String Price = String.valueOf(CartListprice.getItemAtPosition(i));
-//
-//
-//
-//
-//                qty_control.setText("asd");
-
+                String prod_name = String.valueOf(CartList.getItemAtPosition(i));
+                String Porname = newdb.getProductIDByName(prod_name);
+                newdb.DeleteOrderItem(Integer.parseInt(Porname));
 
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());
                 overridePendingTransition(0, 0);
-
-
-
-//                Toast.makeText(getApplicationContext(), x, Toast.LENGTH_SHORT).show();
-//                Toast.makeText(submitActivity.this, String.valueOf(CartList.getItemAtPosition(i)), Toast.LENGTH_SHORT).show();
             }
         });
+
+        PlusList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String prod_name = String.valueOf(CartList.getItemAtPosition(i));
+                String Porname = newdb.getProductIDByName(prod_name);
+                newdb.IncreamentProductCart(Integer.parseInt(Porname));
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
+
+        MinusList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String prod_name = String.valueOf(CartList.getItemAtPosition(i));
+                String Porname = newdb.getProductIDByName(prod_name);
+                newdb.DecreamentProductCart(Integer.parseInt(Porname));
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
+
+
+//        CartListqty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+////                String x = String.valueOf(i);
+//                  String prod_name = String.valueOf(CartList.getItemAtPosition(i));
+//                  String Porname = newdb.getProductIDByName(prod_name);
+//                  newdb.IncreamentProductCart(Integer.parseInt(Porname));
+//
+//
+////
+////                String Price = String.valueOf(CartListprice.getItemAtPosition(i));
+////
+////
+////
+////
+////                qty_control.setText("asd");
+//
+//
+//                finish();
+//                overridePendingTransition(0, 0);
+//                startActivity(getIntent());
+//                overridePendingTransition(0, 0);
+//
+//
+//
+////                Toast.makeText(getApplicationContext(), x, Toast.LENGTH_SHORT).show();
+////                Toast.makeText(submitActivity.this, String.valueOf(CartList.getItemAtPosition(i)), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 //        CartListqty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -140,6 +200,11 @@ public class submitActivity extends AppCompatActivity {
 
             myadabpterqty.add("QTY");
 
+            PlusAdapt.add("");
+            MinusAdapt.add("");
+            deleteadpt.add("");
+
+
 //            String nameprod = cursor.getString(0).toString();
 
 //          if(cursor.getString(0).equals(name)){
@@ -155,6 +220,14 @@ public class submitActivity extends AppCompatActivity {
                     myadabpter.add(id.toString());
                     myadabpterprice.add(price);
                     myadabpterqty.add(cursor.getString(1));
+
+
+
+
+                    PlusAdapt.add("+");
+                    MinusAdapt.add("-");
+                    deleteadpt.add("R");
+
 
                     cursor.moveToNext();
                 }

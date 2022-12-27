@@ -118,8 +118,9 @@ public class MenActivity extends AppCompatActivity {
                 sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
                 String name = sharedPreferences2.getString("username","");
 
+                CartDB.AddToCartZizo(newText2.getText().toString(),name);
 
-                CartDB.insertIntoCart(newText2.getText().toString(),name,Prod_price.getString(0));
+//                CartDB.insertIntoCart(newText2.getText().toString(),name,Prod_price.getString(0));
 
                 Toast.makeText(getApplicationContext(),"zizo2",Toast.LENGTH_LONG).show();
             }
@@ -134,7 +135,9 @@ public class MenActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences2;
                 sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
                 String name = sharedPreferences2.getString("username","");
-                CartDB.insertIntoCart(newText3.getText().toString(),name,Prod_price.getString(0));
+                CartDB.AddToCartZizo(newText3.getText().toString(),name);
+
+//                CartDB.insertIntoCart(newText3.getText().toString(),name,Prod_price.getString(0));
                 Toast.makeText(getApplicationContext(),"zizo3",Toast.LENGTH_LONG).show();
             }
         });
@@ -148,7 +151,9 @@ public class MenActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences2;
                 sharedPreferences2=getSharedPreferences("remember file",MODE_PRIVATE);
                 String name = sharedPreferences2.getString("username","");
-                CartDB.insertIntoCart(newText4.getText().toString(),name,Prod_price.getString(0));
+                CartDB.AddToCartZizo(newText4.getText().toString(),name);
+
+//                CartDB.insertIntoCart(newText4.getText().toString(),name,Prod_price.getString(0));
                 Toast.makeText(getApplicationContext(),"zizo",Toast.LENGTH_LONG).show();
             }
         });
